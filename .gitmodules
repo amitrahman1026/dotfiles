@@ -1,0 +1,3 @@
+[submodule "vim/nvim"]
+	path = vim/nvim
+	url = git@github.com:amitrahman1026/init.lua.git

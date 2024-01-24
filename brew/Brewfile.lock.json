@@ -1,0 +1,71 @@
+{
+  "entries": {
+    "tap": {
+      "homebrew/bundle": {
+        "revision": "d44243fe191e962fce60cbf8e25b6f2e3c1248b3"
+      }
+    },
+    "vscode": {
+      "FaroSystemAppender constructor": null,
+      "akashrajkn.language-netlogo-code": null,
+      "bradlc.vscode-tailwindcss": null,
+      "burkeholland.simple-react-snippets": null,
+      "cschlosser.doxdocgen": null,
+      "DavidAnson.vscode-markdownlint": null,
+      "dbaeumer.vscode-eslint": null,
+      "DivyanshuAgrawal.competitive-programming-helper": null,
+      "dsznajder.es7-react-js-snippets": null,
+      "ecmel.vscode-html-css": null,
+      "Equinusocio.vsc-community-material-theme": null,
+      "equinusocio.vsc-material-theme-icons": null,
+      "esbenp.prettier-vscode": null,
+      "GitHub.copilot": null,
+      "GitHub.copilot-chat": null,
+      "GitHub.vscode-pull-request-github": null,
+      "gitpod.gitpod-desktop": null,
+      "GrapeCity.gc-excelviewer": null,
+      "jeff-hykin.better-cpp-syntax": null,
+      "ms-azuretools.vscode-docker": null,
+      "ms-dotnettools.vscode-dotnet-runtime": null,
+      "ms-python.autopep8": null,
+      "ms-python.isort": null,
+      "ms-python.python": null,
+      "ms-python.vscode-pylance": null,
+      "ms-toolsai.jupyter": null,
+      "ms-toolsai.jupyter-keymap": null,
+      "ms-toolsai.jupyter-renderers": null,
+      "ms-toolsai.vscode-jupyter-cell-tags": null,
+      "ms-toolsai.vscode-jupyter-slideshow": null,
+      "ms-vscode-remote.remote-containers": null,
+      "ms-vscode-remote.remote-wsl": null,
+      "ms-vscode.cmake-tools": null,
+      "ms-vscode.cpptools": null,
+      "ms-vscode.cpptools-extension-pack": null,
+      "ms-vscode.cpptools-themes": null,
+      "ms-vscode.hexeditor": null,
+      "ms-vscode.makefile-tools": null,
+      "ms-vscode.vscode-serial-monitor": null,
+      "ms-vsliveshare.vsliveshare": null,
+      "mshr-h.veriloghdl": null,
+      "pdconsec.vscode-print": null,
+      "RalfZhang.filetemplate": null,
+      "tomoki1207.pdf": null,
+      "twxs.cmake": null,
+      "vscode-icons-team.vscode-icons": null,
+      "vscodevim.vim": null,
+      "WallabyJs.quokka-vscode": null
+    }
+  },
+  "system": {
+    "macos": {
+      "ventura": {
+        "HOMEBREW_VERSION": "4.2.5",
+        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "Homebrew/homebrew-core": "api",
+        "CLT": "14.3.0.0.1.1679647830",
+        "Xcode": "14.3",
+        "macOS": "13.3.1"
+      }
+    }
+  }
+}
