@@ -1,6 +1,7 @@
 [user]
 	email = amit.amit.rahman@gmail.com
 	name = amitrahman1026
+	signingkey = 6B661DCB439EB1DD
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -16,6 +17,7 @@
 	trustExitCode = true
 [commit]
 	template = /Users/amit/.stCommitMsg
+	gpgsign = true
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 ;[url "git@github.com:"]

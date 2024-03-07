@@ -1,4 +1,3 @@
-# testing unlinking
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -8,6 +7,9 @@ fi
 
 # neovim alias
 alias vim='nvim'
+
+# VSCode fork
+alias code='cursor'
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -141,3 +143,12 @@ if [ -f '/Users/amit/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/amit
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Ruby version management on m1
+. "$HOME/.asdf/asdf.sh"
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.3.0
+
+# GPG Signing
+export GPG_TTY=$(tty)

@@ -15,7 +15,7 @@
   "C_Cpp.codeAnalysis.clangTidy.args": ["-extra-arg=-std=c++17"],
   "C_Cpp.default.compilerPath": "/usr/bin/clang",
   "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "Community Material Theme",
+  "workbench.colorTheme": "Rosé Pine",
   "editor.formatOnSave": true,
   "C_Cpp.vcFormat.space.beforeInitializerListOpenBrace": true,
   "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "sameLine",
@@ -39,7 +39,7 @@
   "githubPullRequests.pullBranch": "never",
   "python.formatting.provider": "black",
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   },
   "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, UseTab: Never, IndentWidth: 4, TabWidth: 4, AllowShortIfStatementsOnASingleLine: true, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4, NamespaceIndentation: All, FixNamespaceComments: false }"
 }
