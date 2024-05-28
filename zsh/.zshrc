@@ -12,7 +12,7 @@ alias vim='nvim'
 alias code='cursor'
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/amit/.oh-my-zsh"
@@ -98,11 +98,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -127,11 +127,11 @@ export PATH="/usr/local/opt/binutils/bin:$PATH"
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin:$PATH"
-export PATH="/Library/PostgreSQL/16/bin:$PATH"
-export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/postgresql@16/lib"
-export CPPFLAGS="-I/usr/local/opt/postgresql@16/include"
-export PKG_CONFIG_PATH="/usr/local/opt/postgresql@16/lib/pkgconfig"
+# export PATH="/Library/PostgreSQL/16/bin:$PATH"
+# export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
+# export LDFLAGS="-L/usr/local/opt/postgresql@16/lib"
+# export CPPFLAGS="-I/usr/local/opt/postgresql@16/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/postgresql@16/lib/pkgconfig"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -152,3 +152,7 @@ chruby ruby-3.3.0
 
 # GPG Signing
 export GPG_TTY=$(tty)
+export PATH="/Users/amit/kisi/kisi-hardware-core/scripts/bin:$PATH"
+export PATH="/Users/amit/kisi/test/scripts/bin:$PATH"
+export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.macos64_2.1.100.202311100844/tools/bin:$PATH"
+export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.macos64_2.1.100.202310302101/tools/bin:$PATH"
