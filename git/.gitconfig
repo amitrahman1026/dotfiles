@@ -1,7 +1,7 @@
 [user]
 	email = amit.amit.rahman@gmail.com
 	name = amitrahman1026
-	signingkey = 6B661DCB439EB1DD
+	signingkey = 4A44FFAF490CB7F4
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
