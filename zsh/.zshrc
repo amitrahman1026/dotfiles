@@ -86,6 +86,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
 zsh-autosuggestions
+poetry
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -127,11 +128,6 @@ export PATH="/usr/local/opt/binutils/bin:$PATH"
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin:$PATH"
-# export PATH="/Library/PostgreSQL/16/bin:$PATH"
-# export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
-# export LDFLAGS="-L/usr/local/opt/postgresql@16/lib"
-# export CPPFLAGS="-I/usr/local/opt/postgresql@16/include"
-# export PKG_CONFIG_PATH="/usr/local/opt/postgresql@16/lib/pkgconfig"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export NVM_DIR="$HOME/.nvm"
@@ -146,8 +142,6 @@ chruby ruby-3.3.0
 
 # GPG Signing
 export GPG_TTY=$(tty)
-export PATH="/Users/amit/kisi/kisi-hardware-core/scripts/bin:$PATH"
-export PATH="/Users/amit/kisi/test/scripts/bin:$PATH"
 export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.macos64_2.1.100.202311100844/tools/bin:$PATH"
 export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.macos64_2.1.100.202310302101/tools/bin:$PATH"
 
