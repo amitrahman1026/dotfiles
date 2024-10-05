@@ -146,7 +146,7 @@ export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm3
 export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.macos64_2.1.100.202310302101/tools/bin:$PATH"
 
 # Go binaries
-export PATH="/Users/amit/go/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc'; fi
@@ -163,3 +163,5 @@ if [ -f '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/
 [[ ! -r '/Users/amit/.opam/opam-init/init.zsh' ]] || source '/Users/amit/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
 
+# Python bs
+export PATH="$HOME/Library/Python/3.12/bin:$PATH"
