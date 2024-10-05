@@ -165,3 +165,12 @@ if [ -f '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/
 
 # Python bs
 export PATH="$HOME/Library/Python/3.12/bin:$PATH"
+
+# LLVM clang & GCC path overrides 
+alias gcc='/opt/homebrew/bin/gcc-14'
+alias g++='/opt/homebrew/bin/g++-14'
+
+alias clang='/opt/homebrew/opt/llvm/bin/clang'
+alias clang++='/opt/homebrew/opt/llvm/bin/clang++'
+alias c++='/opt/homebrew/opt/llvm/bin/clang++'
+
