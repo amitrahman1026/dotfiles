@@ -174,3 +174,9 @@ alias clang='/opt/homebrew/opt/llvm/bin/clang'
 alias clang++='/opt/homebrew/opt/llvm/bin/clang++'
 alias c++='/opt/homebrew/opt/llvm/bin/clang++'
 
+export LLVM_PATH=$(brew --prefix llvm)
+export CC="${LLVM_PATH}/bin/clang"
+export CXX="${LLVM_PATH}/bin/clang++"
+export CPPFLAGS="-I${LLVM_PATH}/include"
+export SDKROOT=$(xcrun --show-sdk-path)
+export LDFLAGS="-L${SDKROOT}/usr/lib"
