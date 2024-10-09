@@ -175,7 +175,7 @@ export LLVM_PATH=$(brew --prefix llvm)
 alias clang='${LLVM_PATH}/bin/clang'
 alias clang++='${LLVM_PATH}/bin/clang++'
 alias c++='${LLVM_PATH}/bin/clang++'
-alias clangd='${LLVM_PATH}/bin/clang'
+alias clangd='${LLVM_PATH}/bin/clangd'
 
 # export CC="${LLVM_PATH}/bin/clang"
 # export CXX="${LLVM_PATH}/bin/clang++"
