@@ -167,16 +167,18 @@ if [ -f '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/
 export PATH="$HOME/Library/Python/3.12/bin:$PATH"
 
 # LLVM clang & GCC path overrides 
-alias gcc='/opt/homebrew/bin/gcc-14'
-alias g++='/opt/homebrew/bin/g++-14'
-
-alias clang='/opt/homebrew/opt/llvm/bin/clang'
-alias clang++='/opt/homebrew/opt/llvm/bin/clang++'
-alias c++='/opt/homebrew/opt/llvm/bin/clang++'
+export GCC_PATH=$(brew --prefix gcc)
+alias gcc='${GCC_PATH}/bin/gcc-14'
+alias g++='${GCC_PATH}/bin/g++-14'
 
 export LLVM_PATH=$(brew --prefix llvm)
-export CC="${LLVM_PATH}/bin/clang"
-export CXX="${LLVM_PATH}/bin/clang++"
-export CPPFLAGS="-I${LLVM_PATH}/include"
-export SDKROOT=$(xcrun --show-sdk-path)
-export LDFLAGS="-L${SDKROOT}/usr/lib"
+alias clang='${LLVM_PATH}/bin/clang'
+alias clang++='${LLVM_PATH}/bin/clang++'
+alias c++='${LLVM_PATH}/bin/clang++'
+alias clangd='${LLVM_PATH}/bin/clang'
+
+# export CC="${LLVM_PATH}/bin/clang"
+# export CXX="${LLVM_PATH}/bin/clang++"
+# export CPPFLAGS="-I${LLVM_PATH}/include"
+# export SDKROOT=$(xcrun --show-sdk-path)
+# export LDFLAGS="-L${SDKROOT}/usr/lib"
