@@ -8,7 +8,7 @@
 	process = git-lfs filter-process
 	required = true
 [core]
-	excludesfile = /Users/amit/.gitignore_global
+	excludesFile = /Users/amit/.gitignore
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 

@@ -166,16 +166,27 @@ if [ -f '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/
 # Python bs
 export PATH="$HOME/Library/Python/3.12/bin:$PATH"
 
-# LLVM clang & GCC path overrides 
-export GCC_PATH=$(brew --prefix gcc)
-alias gcc='${GCC_PATH}/bin/gcc-14'
-alias g++='${GCC_PATH}/bin/g++-14'
+# LLVM clang & GCC path overrides -- note that on the mac
+# you will have to pass in -isysroot (xcrun --show-sdk-path) as a flag
+# because non Apple clang compilers are not aware of where the include files are!
+# This is due to System Integrity Protections (SIP) supposedly locking /usr directory down
+#
+# Some solutions I see is making a symlink form apple's sdk headers to 
+# /usr/include, however that isnt that seems to go against the principle of SIP
+#
+#
+# export GCC_PATH=$(brew --prefix gcc)
+# alias gcc='${GCC_PATH}/bin/gcc-14'
+# alias g++='${GCC_PATH}/bin/g++-14'
 
-export LLVM_PATH=$(brew --prefix llvm)
-alias clang='${LLVM_PATH}/bin/clang'
-alias clang++='${LLVM_PATH}/bin/clang++'
-alias c++='${LLVM_PATH}/bin/clang++'
-alias clangd='${LLVM_PATH}/bin/clangd'
+#export LLVM_PATH=$(brew --prefix llvm)
+# alias clang='${LLVM_PATH}/bin/clang'
+# alias clang++='${LLVM_PATH}/bin/clang++'
+# alias c++='${LLVM_PATH}/bin/clang++'
+# alias clangd='${LLVM_PATH}/bin/clangd'
+
+# LLVM Include paths
+# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # export CC="${LLVM_PATH}/bin/clang"
 # export CXX="${LLVM_PATH}/bin/clang++"
