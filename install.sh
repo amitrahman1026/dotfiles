@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "This is a WIP...dont use it!"
+exit 1
+
 # Requesting sudo upfront
 echo "Requesting administrative access..."
 sudo -v

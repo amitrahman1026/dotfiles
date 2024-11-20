@@ -12,7 +12,7 @@ alias vim='nvim'
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/amit/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -114,25 +114,6 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
-export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin
-export PATH=~/.composer/vendor/bin:$PATH
-
-export PATH="/usr/local/opt/binutils/bin:$PATH"
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin:$PATH"
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Ruby version management on m1
-. "$HOME/.asdf/asdf.sh"
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.3.0
 
 # GPG Signing
 export GPG_TTY=$(tty)
