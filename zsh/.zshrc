@@ -8,9 +8,6 @@ fi
 # neovim alias
 alias vim='nvim'
 
-# VSCode fork
-alias code='cursor'
-
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -105,9 +102,6 @@ else
   export EDITOR='nvim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -142,54 +136,3 @@ chruby ruby-3.3.0
 
 # GPG Signing
 export GPG_TTY=$(tty)
-export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.macos64_2.1.100.202311100844/tools/bin:$PATH"
-export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.macos64_2.1.100.202310302101/tools/bin:$PATH"
-
-# Go binaries
-export PATH="$HOME/go/bin:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-
-# BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
-[[ ! -r '/Users/amit/.opam/opam-init/init.zsh' ]] || source '/Users/amit/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
-# END opam configuration
-
-# Python bs
-export PATH="$HOME/Library/Python/3.12/bin:$PATH"
-
-# LLVM clang & GCC path overrides -- note that on the mac
-# you will have to pass in -isysroot (xcrun --show-sdk-path) as a flag
-# because non Apple clang compilers are not aware of where the include files are!
-# This is due to System Integrity Protections (SIP) supposedly locking /usr directory down
-#
-# Some solutions I see is making a symlink form apple's sdk headers to 
-# /usr/include, however that isnt that seems to go against the principle of SIP
-#
-#
-# export GCC_PATH=$(brew --prefix gcc)
-# alias gcc='${GCC_PATH}/bin/gcc-14'
-# alias g++='${GCC_PATH}/bin/g++-14'
-
-#export LLVM_PATH=$(brew --prefix llvm)
-# alias clang='${LLVM_PATH}/bin/clang'
-# alias clang++='${LLVM_PATH}/bin/clang++'
-# alias c++='${LLVM_PATH}/bin/clang++'
-# alias clangd='${LLVM_PATH}/bin/clangd'
-
-# LLVM Include paths
-# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-
-# export CC="${LLVM_PATH}/bin/clang"
-# export CXX="${LLVM_PATH}/bin/clang++"
-# export CPPFLAGS="-I${LLVM_PATH}/include"
-# export SDKROOT=$(xcrun --show-sdk-path)
-# export LDFLAGS="-L${SDKROOT}/usr/lib"
