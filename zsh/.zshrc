@@ -148,12 +148,6 @@ export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm3
 # Go binaries
 export PATH="$HOME/go/bin:$PATH"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 
 # BEGIN opam configuration
 # This is useful if you're using opam as it adds:
@@ -185,7 +179,7 @@ export PATH="$HOME/Library/Python/3.12/bin:$PATH"
 # alias c++='${LLVM_PATH}/bin/clang++'
 # alias clangd='${LLVM_PATH}/bin/clangd'
 
-# LLVM Include paths
+# Add LLVM Include paths before usr/bin
 # export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # export CC="${LLVM_PATH}/bin/clang"
@@ -193,3 +187,10 @@ export PATH="$HOME/Library/Python/3.12/bin:$PATH"
 # export CPPFLAGS="-I${LLVM_PATH}/include"
 # export SDKROOT=$(xcrun --show-sdk-path)
 # export LDFLAGS="-L${SDKROOT}/usr/lib"
+alias conan2='/opt/homebrew/opt/conan/bin/conan'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
