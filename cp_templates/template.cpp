@@ -13,8 +13,8 @@ void solve() {
 
 int main() {
     std::ios_base::sync_with_stdio(false);
-    std::cin.tie(NULL);
-    std::cout.tie(NULL);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
     int tc = 1;
     // cin >> tc;
     for (int t = 1; t <= tc; t++) {
