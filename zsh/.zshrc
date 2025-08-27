@@ -11,6 +11,10 @@ alias vim='nvim'
 # VSCode fork
 alias code='cursor'
 
+# FZF alias
+alias fsb='~/dotfiles/scripts/fsb.sh'
+alias fshow='~/dotfiles/scripts/fshow.sh'
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
