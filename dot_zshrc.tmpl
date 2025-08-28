@@ -1,0 +1,107 @@
+{{- if eq .chezmoi.os "linux" }}
+# Add neofetch for Linux systems
+neofetch
+{{- end }}
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Common aliases
+alias vim='nvim'
+
+{{- if eq .chezmoi.os "darwin" }}
+# VSCode fork (macOS specific)
+alias code='cursor'
+{{- end }}
+
+# FZF scripts
+alias fsb='{{ .chezmoi.homeDir }}/dotfiles/scripts/fsb.sh'
+alias fshow='{{ .chezmoi.homeDir }}/dotfiles/scripts/fshow.sh'
+
+# Path setup
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
+
+# Oh My Zsh setup
+export ZSH="{{ .chezmoi.homeDir }}/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Plugins
+plugins=(git zsh-autosuggestions)
+{{- if eq .chezmoi.os "darwin" }}
+plugins+=(poetry)
+{{- end }}
+
+source $ZSH/oh-my-zsh.sh
+
+# Editor preferences
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+# Load p10k config
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# GPG Setup
+export GPG_TTY=$(tty)
+
+{{- if eq .chezmoi.os "darwin" }}
+# macOS specific configurations
+export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin
+export PATH=~/.composer/vendor/bin:$PATH
+export PATH="/usr/local/opt/binutils/bin:$PATH"
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin:$PATH"
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Ruby version management
+. "$HOME/.asdf/asdf.sh"
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.3.0
+
+# Development paths
+export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.macos64_2.1.100.202311100844/tools/bin:$PATH"
+export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.macos64_2.1.100.202310302101/tools/bin:$PATH"
+
+# Go binaries
+export PATH="$HOME/go/bin:$PATH"
+
+# OCaml/opam
+[[ ! -r '/Users/amit/.opam/opam-init/init.zsh' ]] || source '/Users/amit/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+
+# Python paths
+export PATH="$HOME/Library/Python/3.12/bin:$PATH"
+
+# Conan alias
+alias conan2='/opt/homebrew/opt/conan/bin/conan'
+
+# Google Cloud SDK
+if [ -f '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 
+  . '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc'
+fi
+if [ -f '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then 
+  . '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc'
+fi
+{{- else if eq .chezmoi.os "linux" }}
+# Linux specific configurations
+
+# Development environment
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# NVM for Linux
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+{{- end }}

@@ -1,0 +1,31 @@
+FROM ubuntu:22.04
+
+# Prevent interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install basic dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    zsh \
+    sudo \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create a test user (non-root)
+RUN useradd -m -s /bin/zsh testuser && \
+    echo "testuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER testuser
+WORKDIR /home/testuser
+
+# Set up git config (required for chezmoi)
+RUN git config --global user.email "test@example.com" && \
+    git config --global user.name "Test User"
+
+# Install chezmoi
+RUN sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b /home/testuser/bin
+
+ENV PATH="/home/testuser/bin:$PATH"
+
+CMD ["/bin/zsh"]

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.chezmoi.io)",
+      "Bash(git checkout:*)",
+      "Bash(chmod:*)",
+      "Bash(cp:*)",
+      "Bash(docker-compose build:*)",
+      "Bash(docker:*)",
+      "Bash(docker-compose:*)",
+      "Bash(./test-linux-templates.sh:*)",
+      "Bash(chezmoi:*)",
+      "Bash(./install-chezmoi.sh:*)"
+    ],
+    "deny": []
+  }
+}

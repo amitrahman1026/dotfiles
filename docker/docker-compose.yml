@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  ubuntu-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu
+    container_name: dotfiles-ubuntu-test
+    volumes:
+      - ../:/home/testuser/dotfiles-repo:ro
+    working_dir: /home/testuser
+    tty: true
+    stdin_open: true
+
+  arch-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.arch
+    container_name: dotfiles-arch-test
+    volumes:
+      - ../:/home/testuser/dotfiles-repo:ro
+    working_dir: /home/testuser
+    tty: true
+    stdin_open: true

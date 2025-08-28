@@ -1,0 +1,12 @@
+{{- if stat (joinPath .chezmoi.sourceDir "vscode/settings.json") }}
+{{-   include "vscode/settings.json" }}
+{{- else }}
+{
+    "editor.fontSize": 14,
+    "editor.fontFamily": "Fira Code, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontSize": 14,
+    "workbench.colorTheme": "Material Theme",
+    "workbench.iconTheme": "material-icon-theme"
+}
+{{- end }}

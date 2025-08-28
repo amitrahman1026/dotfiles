@@ -1,0 +1,12 @@
+{{- if eq .chezmoi.os "darwin" -}}
+export PATH=/Users/amit/.local/bin:$PATH
+{{- else if eq .chezmoi.os "linux" -}}
+export PATH="$HOME/.local/bin:$PATH"
+{{- end }}
+
+{{- if .personal }}
+# Cargo environment
+. "$HOME/.cargo/env"
+{{- end }}
+
+export GPG_TTY=$(tty)

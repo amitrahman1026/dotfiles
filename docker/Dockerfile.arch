@@ -1,0 +1,29 @@
+FROM archlinux:latest
+
+# Update system and install basic dependencies
+RUN pacman -Syu --noconfirm && \
+    pacman -S --needed --noconfirm \
+    curl \
+    git \
+    zsh \
+    sudo \
+    base-devel \
+    && pacman -Scc --noconfirm
+
+# Create a test user
+RUN useradd -m -s /bin/zsh testuser && \
+    echo "testuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER testuser
+WORKDIR /home/testuser
+
+# Set up git config
+RUN git config --global user.email "test@example.com" && \
+    git config --global user.name "Test User"
+
+# Install chezmoi
+RUN sh -c "$(curl -fsLS https://get.chezmoi.io)" -- -b /home/testuser/bin
+
+ENV PATH="/home/testuser/bin:$PATH"
+
+CMD ["/bin/zsh"]

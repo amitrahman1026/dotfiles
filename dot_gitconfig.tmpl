@@ -1,0 +1,41 @@
+[user]
+	email = amit.amit.rahman@gmail.com
+	name = amitrahman1026
+{{- if .personal }}
+	signingkey = 4A44FFAF490CB7F4
+{{- end }}
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[core]
+{{- if eq .chezmoi.os "darwin" }}
+	excludesFile = {{ .chezmoi.homeDir }}/.gitignore
+{{- else }}
+	excludesFile = ~/.gitignore
+{{- end }}
+
+{{- if .personal }}
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[commit]
+{{- if eq .chezmoi.os "darwin" }}
+	template = {{ .chezmoi.homeDir }}/.stCommitMsg
+{{- end }}
+	gpgsign = true
+{{- end }}
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+
+[pull]
+	rebase = true

@@ -1,0 +1,28 @@
+{{- $personal := false }}{{/* true if this machine should have personal secrets */}}
+{{- $ephemeral := false }}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $hostname := .chezmoi.hostname }}
+
+{{- if eq .chezmoi.os "darwin" }}
+{{-   $personal = true }}
+{{- else if eq .chezmoi.os "linux" }}
+{{-   if contains "server" $hostname }}
+{{-     $ephemeral = true }}
+{{-   else }}
+{{-     $personal = true }}
+{{-   end }}
+{{- end }}
+
+[data]
+  personal = {{ $personal }}
+  ephemeral = {{ $ephemeral }}
+  hostname = {{ $hostname | quote }}
+  os = {{ .chezmoi.os | quote }}
+
+{{- if eq .chezmoi.os "darwin" }}
+[data.paths]
+  brew = "/opt/homebrew/bin/brew"
+  vscode_settings = "Library/Application Support/Code/User/settings.json"
+{{- else if eq .chezmoi.os "linux" }}
+[data.paths]
+  vscode_settings = ".config/Code/User/settings.json"
+{{- end }}

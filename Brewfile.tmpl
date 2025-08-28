@@ -1,0 +1,45 @@
+{{- if eq .chezmoi.os "darwin" }}
+# Taps
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+tap "homebrew/services"
+
+# Essential tools
+brew "git"
+brew "curl"
+brew "wget"
+brew "zsh"
+brew "neovim"
+brew "ripgrep"
+brew "fd"
+brew "bat"
+brew "exa"
+brew "tree"
+brew "htop"
+brew "tmux"
+
+# Development tools
+brew "node"
+brew "go"
+brew "python@3.11"
+brew "gcc"
+brew "cmake"
+brew "clang-format"
+brew "prettier"
+
+# Additional tools
+brew "awscli"
+brew "docker"
+brew "docker-compose" 
+brew "helm"
+brew "youtube-dl"
+brew "pstree"
+
+# Cask applications (GUI apps)
+cask "cursor"
+cask "ngrok"
+
+# Fonts
+cask "font-fira-code"
+cask "font-jetbrains-mono"
+{{- end }}

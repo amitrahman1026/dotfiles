@@ -1,0 +1,147 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+log() {
+    echo -e "${BLUE}[$(date +'%H:%M:%S')]${NC} $1"
+}
+
+success() {
+    echo -e "${GREEN}✓${NC} $1"
+}
+
+error() {
+    echo -e "${RED}✗${NC} $1"
+}
+
+warn() {
+    echo -e "${YELLOW}⚠${NC} $1"
+}
+
+{{- if eq .chezmoi.os "darwin" }}
+
+log "Setting up macOS environment..."
+
+# Check for Xcode Command Line Tools
+if ! xcode-select -p &> /dev/null; then
+    log "Installing Xcode Command Line Tools..."
+    xcode-select --install
+    # Wait for installation to complete
+    until xcode-select -p &> /dev/null; do
+        sleep 5
+    done
+    success "Xcode Command Line Tools installed"
+else
+    success "Xcode Command Line Tools already installed"
+fi
+
+# Check for Homebrew and install if we don't have it
+if ! command -v brew &> /dev/null; then
+    log "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    success "Homebrew installed"
+else
+    success "Homebrew already installed"
+fi
+
+# Update Homebrew
+log "Updating Homebrew..."
+brew update
+
+# Install packages from Brewfile
+if [ -f "{{ .chezmoi.sourceDir }}/Brewfile" ]; then
+    log "Installing packages from Brewfile..."
+    brew bundle --file="{{ .chezmoi.sourceDir }}/Brewfile"
+    success "Packages installed from Brewfile"
+else
+    warn "Brewfile not found, skipping package installation"
+fi
+
+{{- else if eq .chezmoi.os "linux" }}
+
+log "Setting up Linux environment..."
+
+# Detect Linux distribution
+if command -v pacman &> /dev/null; then
+    # Arch Linux
+    log "Detected Arch Linux, installing packages..."
+    sudo pacman -Syu --noconfirm
+    sudo pacman -S --needed --noconfirm \
+        base-devel \
+        git \
+        neovim \
+        zsh \
+        tmux \
+        curl \
+        wget \
+        ripgrep \
+        fd \
+        bat \
+        exa \
+        htop \
+        tree \
+        nodejs \
+        npm \
+        python \
+        python-pip
+        
+elif command -v apt-get &> /dev/null; then
+    # Ubuntu/Debian
+    log "Detected Ubuntu/Debian, installing packages..."
+    sudo apt-get update
+    sudo apt-get install -y \
+        build-essential \
+        git \
+        neovim \
+        zsh \
+        tmux \
+        curl \
+        wget \
+        ripgrep \
+        fd-find \
+        bat \
+        htop \
+        tree \
+        nodejs \
+        npm \
+        python3 \
+        python3-pip
+        
+elif command -v dnf &> /dev/null; then
+    # Fedora
+    log "Detected Fedora, installing packages..."
+    sudo dnf update -y
+    sudo dnf install -y \
+        @development-tools \
+        git \
+        neovim \
+        zsh \
+        tmux \
+        curl \
+        wget \
+        ripgrep \
+        fd-find \
+        bat \
+        htop \
+        tree \
+        nodejs \
+        npm \
+        python3 \
+        python3-pip
+else
+    error "Unsupported Linux distribution"
+    exit 1
+fi
+
+success "Linux packages installed"
+
+{{- end }}
+
+success "Package installation completed!"
