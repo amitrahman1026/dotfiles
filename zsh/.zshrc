@@ -12,6 +12,7 @@ alias vim='nvim'
 # FZF alias
 alias fsb='~/dotfiles/scripts/fsb.sh'
 alias fshow='~/dotfiles/scripts/fshow.sh'
+alias fss='~/dotfiles/scripts/fss.sh'
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
