@@ -1,3 +1,7 @@
 [submodule "vim/nvim"]
 	path = vim/nvim
 	url = git@github.com:amitrahman1026/init.lua.git
+[submodule "agent-workspace"]
+	path = agent-workspace
+	url = git@github.com:amitrahman1026/agent-workspace.git
+	branch = main
