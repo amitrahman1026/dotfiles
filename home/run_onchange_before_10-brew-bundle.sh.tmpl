@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Brewfile hash: {{ include "../brew/Brewfile" | sha256sum }}
+set -e
+brew bundle check --file="{{ .chezmoi.workingTree }}/brew/Brewfile" >/dev/null || brew bundle install --no-upgrade --file="{{ .chezmoi.workingTree }}/brew/Brewfile"
+{{ end -}}

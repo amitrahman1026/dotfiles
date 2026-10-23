@@ -1,0 +1,9 @@
+*~
+.DS_Store
+
+node_modules
+CmakeHax
+.cache
+compile_commands.json
+
+**/.claude/settings.local.json

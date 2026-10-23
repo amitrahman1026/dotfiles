@@ -15,7 +15,6 @@
   "C_Cpp.codeAnalysis.clangTidy.args": ["-extra-arg=-std=c++17"],
   "C_Cpp.default.compilerPath": "/usr/bin/clang",
   "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "Rosé Pine",
   "editor.formatOnSave": true,
   "C_Cpp.vcFormat.space.beforeInitializerListOpenBrace": true,
   "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "sameLine",
@@ -38,8 +37,41 @@
   },
   "githubPullRequests.pullBranch": "never",
   "python.formatting.provider": "black",
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit"
+  // "editor.codeActionsOnSave": {
+  //   "source.organizeImports": "explicit"
+  // },
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, UseTab: Never, IndentWidth: 4, TabWidth: 4, AllowShortIfStatementsOnASingleLine: true, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4, NamespaceIndentation: All, FixNamespaceComments: false }",
+  "remote.SSH.remotePlatform": {
+    "*.gitpod.io": "linux",
+    "soc-cluster": "linux",
+    "cs3210-11": "linux",
+    "cs3210-09": "linux",
+    "cs3210-10": "linux"
   },
-  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, UseTab: Never, IndentWidth: 4, TabWidth: 4, AllowShortIfStatementsOnASingleLine: true, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4, NamespaceIndentation: All, FixNamespaceComments: false }"
+  "workbench.colorTheme": "Rosé Pine",
+  "codestats.apikey": "SFMyNTY.WVcxcGRISmhhRzFoYmpFd01qWT0jI01qSTVNamM9.a2xb3GC9EjYiceQM1NnoTKf8zljqCQtJe4yrEBydFxg",
+  "codestats.username": "amitrahman1026",
+  "lldb.suppressUpdateNotifications": true,
+  "settingsSync.ignoredExtensions": ["xaver.clang-format"],
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "makefile.configureOnOpen": true,
+  // SOC CLUSTER STUFF
+  "remote.SSH.useLocalServer": false,
+  "remote.SSH.useExecServer": false,
+  "remote.SSH.enableDynamicForwarding": false,
+  "remote.SSH.showLoginTerminal": false,
+  "remote.SSH.enableRemoteCommand": false,
+  "print.folder.fileNames": true,
+  "print.folder.include": [],
+  "print.folder.exclude": [
+    "{bin,obj,out}",
+    "node_modules",
+    "data",
+    "**/*.{bin,exe,dll,hex,pdb,pdf,pfx,png,jpg,gif,bmp,suo,design}"
+  ],
+  "print.folder.maxLines": 1200,
+  "print.folder.maxFiles": 30,
+  "print.folder.includeFileList": false
 }

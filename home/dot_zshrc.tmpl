@@ -1,3 +1,6 @@
+{{ if eq .chezmoi.os "linux" -}}
+neofetch
+{{ end -}}
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -8,18 +11,21 @@ fi
 # neovim alias
 alias vim='nvim'
 
+{{ if eq .chezmoi.os "darwin" -}}
 # VSCode fork
 alias code='cursor'
 
+{{ end -}}
 # FZF alias
 alias fsb='~/dotfiles/scripts/fsb.sh'
 alias fshow='~/dotfiles/scripts/fshow.sh'
+alias fss='~/dotfiles/scripts/fss.sh'
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/amit/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -124,41 +130,8 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
-export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin
-export PATH=~/.composer/vendor/bin:$PATH
-
-export PATH="/usr/local/opt/binutils/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin:$PATH"
+{{ if eq .chezmoi.os "darwin" -}}
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Ruby version management on m1
-. "$HOME/.asdf/asdf.sh"
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.3.0
-
-# GPG Signing
-export GPG_TTY=$(tty)
-export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.macos64_2.1.100.202311100844/tools/bin:$PATH"
-export PATH="/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.macos64_2.1.100.202310302101/tools/bin:$PATH"
-
-# Go binaries
-export PATH="$HOME/go/bin:$PATH"
-
-
-# BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
-[[ ! -r '/Users/amit/.opam/opam-init/init.zsh' ]] || source '/Users/amit/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
-# END opam configuration
 
 # Python bs
 export PATH="$HOME/Library/Python/3.12/bin:$PATH"
@@ -190,10 +163,18 @@ export PATH="$HOME/Library/Python/3.12/bin:$PATH"
 # export CPPFLAGS="-I${LLVM_PATH}/include"
 # export SDKROOT=$(xcrun --show-sdk-path)
 # export LDFLAGS="-L${SDKROOT}/usr/lib"
-alias conan2='/opt/homebrew/opt/conan/bin/conan'
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/amit/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/amit/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
+{{- end }}
+{{- if eq .chezmoi.os "linux" }}
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+{{- end }}
+
+# Go binaries
+export PATH="$HOME/go/bin:$PATH"

@@ -1,0 +1,12 @@
+#!/bin/bash
+# user.js hash: {{ include "../zen/user.js" | sha256sum }}
+# shortcuts hash: {{ include "../zen/zen-keyboard-shortcuts.json" | sha256sum }}
+# Copy tracked Zen settings into each Zen profile. Quit Zen first, or it
+# rewrites zen-keyboard-shortcuts.json on exit.
+set -euo pipefail
+zen="{{ .chezmoi.workingTree }}/zen"
+. "$zen/profiles.sh"
+zen_profiles | while read -r profile; do
+  cp "$zen/user.js" "$zen/zen-keyboard-shortcuts.json" "$profile/"
+  echo "zen: updated $profile"
+done

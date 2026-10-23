@@ -1,0 +1,39 @@
+# Git repos that chezmoi clones on a new machine and pulls on `chezmoi update`.
+# Edit and commit inside them as normal repos. Pulls are fast-forward only, so
+# chezmoi never rebases or merges local commits; push them before `chezmoi update`.
+
+[".config/nvim"]
+    type = "git-repo"
+    url = "git@github.com:amitrahman1026/init.lua.git"
+    refreshPeriod = "168h"
+    pull.args = ["--ff-only"]
+
+["agent-workspace"]
+    type = "git-repo"
+    url = "git@github.com:amitrahman1026/agent-workspace.git"
+    refreshPeriod = "168h"
+    pull.args = ["--ff-only"]
+
+[".oh-my-zsh"]
+    type = "git-repo"
+    url = "https://github.com/ohmyzsh/ohmyzsh.git"
+    refreshPeriod = "168h"
+    pull.args = ["--ff-only"]
+
+[".oh-my-zsh/custom/themes/powerlevel10k"]
+    type = "git-repo"
+    url = "https://github.com/romkatv/powerlevel10k.git"
+    refreshPeriod = "168h"
+    pull.args = ["--ff-only"]
+
+[".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+    type = "git-repo"
+    url = "https://github.com/zsh-users/zsh-autosuggestions.git"
+    refreshPeriod = "168h"
+    pull.args = ["--ff-only"]
+
+[".tmux/plugins/tpm"]
+    type = "git-repo"
+    url = "https://github.com/tmux-plugins/tpm.git"
+    refreshPeriod = "168h"
+    pull.args = ["--ff-only"]

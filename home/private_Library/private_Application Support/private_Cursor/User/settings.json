@@ -1,0 +1,75 @@
+{
+  "explorer.confirmDelete": false,
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "diffEditor.ignoreTrimWhitespace": true,
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "terminal.integrated.automationShell.osx": "",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
+  "C_Cpp.intelliSenseEngineFallback": "Enabled",
+  "cph.language.cpp.Args": "-Wall -std=c++17",
+  "security.workspace.trust.untrustedFiles": "open",
+  "C_Cpp.default.cppStandard": "c++17",
+  "C_Cpp.codeAnalysis.clangTidy.args": ["-extra-arg=-std=c++17"],
+  "C_Cpp.default.compilerPath": "/usr/bin/clang",
+  "workbench.iconTheme": "vscode-icons",
+  "C_Cpp.vcFormat.space.beforeInitializerListOpenBrace": true,
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "sameLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.lambda": "sameLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.type": "sameLine",
+  "vsicons.dontShowNewVersionMessage": true,
+  "editor.renderWhitespace": "all",
+  "remote.SSH.defaultExtensions": ["gitpod.gitpod-remote-ssh"],
+  "workbench.startupEditor": "none",
+  "arduino.useArduinoCli": true,
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false
+  },
+  "githubPullRequests.pullBranch": "never",
+  "python.formatting.provider": "black",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, UseTab: Never, IndentWidth: 4, TabWidth: 4, AllowShortIfStatementsOnASingleLine: true, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4, NamespaceIndentation: All, FixNamespaceComments: false, AllowShortFunctionsOnASingleLine: All}",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.lineNumbers": "on",
+  "editor.formatOnSave": true,
+  "cursor.cpp.disabledLanguages": ["scminput"],
+  "cmake.showOptionsMovedNotification": false,
+  "cmake.configureOnOpen": true,
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+  "codestats.apikey": "SFMyNTY.WVcxcGRISmhhRzFoYmpFd01qWT0jI01qSTVNamM9.a2xb3GC9EjYiceQM1NnoTKf8zljqCQtJe4yrEBydFxg",
+  "codestats.username": "amitrahman1026",
+  "workbench.colorTheme": "Rosé Pine",
+  "remote.SSH.remotePlatform": {
+    "*.gitpod.io": "linux"
+  },
+  "diffEditor.maxComputationTime": 0,
+  "makefile.configureOnOpen": true,
+  "print.folder.fileNames": true,
+  "print.folder.include": [],
+  "print.folder.exclude": [
+    "{bin,obj,out}",
+    "node_modules",
+    "data",
+    "**/*.{bin,exe,dll,hex,pdb,pdf,pfx,png,jpg,gif,bmp,suo,design}"
+  ],
+  "print.folder.maxLines": 1200,
+  "print.folder.maxFiles": 30,
+  "print.folder.includeFileList": false
+}

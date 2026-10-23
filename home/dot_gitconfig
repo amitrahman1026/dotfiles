@@ -7,10 +7,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[core]
-	excludesFile = /Users/amit/.gitignore
 [commit]
-	template = /Users/amit/.stCommitMsg
 	gpgsign = true
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
