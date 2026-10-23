@@ -129,7 +129,6 @@ export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.8/bin
 export PATH=~/.composer/vendor/bin:$PATH
 
 export PATH="/usr/local/opt/binutils/bin:$PATH"
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
