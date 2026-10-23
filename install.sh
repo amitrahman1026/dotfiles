@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "This is a WIP...dont use it!"
+exit 1
+
 # Requesting sudo upfront
 echo "Requesting administrative access..."
 sudo -v
@@ -45,6 +48,7 @@ ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/vim/nvim ~/.config/nvim
 ln -sf ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 ln -sf ~/dotfiles/zsh/.zshrc ~/.zshrc
+~/dotfiles/agent-workspace/scripts/install.sh
 
 # Install VSCode extensions
 echo "Installing VSCode extensions..."

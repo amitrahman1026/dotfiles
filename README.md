@@ -34,6 +34,7 @@ During the installation, you'll be prompted to apply MacOS settings. You can cho
 - macos/: MacOS custom settings script
 - brew/: Homebrew dependencies and Brewfile
 - iterm2/: iTerm2 configurations and color themes
+- agent-workspace/: Agent rules and skills (submodule, installed by its own scripts/install.sh)
 
 ## Submodules
 This repository uses Git submodules to manage certain configurations (e.g., Neovim). To update these submodules, run:
