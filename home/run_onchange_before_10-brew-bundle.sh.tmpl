@@ -1,6 +1,8 @@
-{{ if eq .chezmoi.os "darwin" -}}
+{{ if and (eq .chezmoi.os "darwin") (eq .profile "personal") -}}
 #!/bin/bash
 # Brewfile hash: {{ include "../brew/Brewfile" | sha256sum }}
 set -e
+command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 brew bundle check --file="{{ .chezmoi.workingTree }}/brew/Brewfile" >/dev/null || brew bundle install --no-upgrade --file="{{ .chezmoi.workingTree }}/brew/Brewfile"
 {{ end -}}

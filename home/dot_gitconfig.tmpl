@@ -1,16 +1,20 @@
 [user]
-	email = amit.amit.rahman@gmail.com
+	email = {{ .email }}
 	name = amitrahman1026
+{{- if eq .profile "personal" }}
 	signingkey = 4A44FFAF490CB7F4
+{{- end }}
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+{{- if eq .profile "personal" }}
 [commit]
 	gpgsign = true
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+{{- end }}
 ;[url "git@github.com:"]
 ;	insteadOf = https://github.com/
 [pull]

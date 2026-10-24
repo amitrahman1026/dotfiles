@@ -1,1 +1,16 @@
+{{- $profile := promptChoiceOnce . "profile" "Machine profile" (list "personal" "work") -}}
+{{- $email := promptStringOnce . "email" "Git email" "amit.amit.rahman@gmail.com" -}}
 sourceDir = {{ .chezmoi.workingTree | quote }}
+{{- if eq $profile "personal" }}
+
+# Personal machines decrypt secrets with the age key. The key is in
+# secrets/age-key.txt.age, encrypted with a passphrase kept in Bitwarden.
+encryption = "age"
+[age]
+    identity = "~/.config/chezmoi/key.txt"
+    recipient = "age1ewa7a2ew57tdl94h3hsqdtx5smspy9lpf4hpp2mqfundt80rjcuspfvq2g"
+{{- end }}
+
+[data]
+    profile = {{ $profile | quote }}
+    email = {{ $email | quote }}

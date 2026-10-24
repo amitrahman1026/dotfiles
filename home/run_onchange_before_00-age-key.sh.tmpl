@@ -1,0 +1,12 @@
+{{ if eq .profile "personal" -}}
+#!/bin/bash
+# Decrypt the age key once per machine. The passphrase is in Bitwarden
+# ("chezmoi age key passphrase").
+set -euo pipefail
+key="$HOME/.config/chezmoi/key.txt"
+if [ ! -f "$key" ]; then
+  mkdir -p "$(dirname "$key")"
+  chezmoi age decrypt --passphrase --output "$key" "{{ .chezmoi.workingTree }}/secrets/age-key.txt.age"
+  chmod 600 "$key"
+fi
+{{ end -}}

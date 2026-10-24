@@ -4,15 +4,22 @@
 
 [".config/nvim"]
     type = "git-repo"
+{{- if eq .profile "personal" }}
     url = "git@github.com:amitrahman1026/init.lua.git"
+{{- else }}
+    url = "https://github.com/amitrahman1026/init.lua.git"
+{{- end }}
     refreshPeriod = "168h"
     pull.args = ["--ff-only"]
+
+{{- if eq .profile "personal" }}
 
 ["agent-workspace"]
     type = "git-repo"
     url = "git@github.com:amitrahman1026/agent-workspace.git"
     refreshPeriod = "168h"
     pull.args = ["--ff-only"]
+{{- end }}
 
 [".oh-my-zsh"]
     type = "git-repo"

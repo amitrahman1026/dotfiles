@@ -5,11 +5,47 @@ My shell, git, editor, terminal and browser settings for macOS and Arch Linux. [
 ## Set up a new machine
 
 ```bash
-git clone git@github.com:amitrahman1026/dotfiles.git ~/dotfiles
+git clone https://github.com/amitrahman1026/dotfiles.git ~/dotfiles
 ~/dotfiles/install.sh
 ```
 
-`install.sh` installs chezmoi, shows the diff, and applies the changes when you confirm.
+`install.sh` needs no admin rights. It installs chezmoi (with Homebrew if present, else into `~/.local/bin`), asks two questions, shows the diff, and applies the changes when you confirm:
+
+- **Machine profile:** `personal` or `work`.
+- **Git email.**
+
+On a `personal` machine it then asks for the age key passphrase. Copy it from the Bitwarden item `chezmoi age key passphrase`.
+
+The answers are saved in `~/.config/chezmoi/chezmoi.toml`. To change them, run `chezmoi init --source ~/dotfiles` again.
+
+## Profiles
+
+| | personal | work |
+|---|---|---|
+| Brewfile, agent-workspace | yes | no |
+| Secrets (ssh config, servers.conf, GPG key) | yes | no |
+| Git commit signing, https→ssh rewrite | yes | no |
+| nvim config clone | over ssh | over https |
+| Shell, editors, tmux, Zen | yes | yes |
+
+On a work machine without admin rights, nvim 0.12 and tree-sitter-cli 0.26+ may need a user-level install, such as the release tarballs in `~/.local`.
+
+## Secrets
+
+chezmoi encrypts these files with age. The repo is public, so it holds only ciphertext:
+
+| File | Source |
+|---|---|
+| `~/.ssh/config` | `home/private_dot_ssh/encrypted_config.age` |
+| `~/.config/fss/servers.conf` | `home/private_dot_config/fss/encrypted_servers.conf.age` |
+| GPG signing key 490CB7F4 | `secrets/gpg-key.asc.age`. `run_onchange_after_40-gpg-key.sh` imports and trusts it. |
+
+The age key itself is in `secrets/age-key.txt.age`, encrypted with a passphrase. The passphrase is in Bitwarden. `run_onchange_before_00-age-key.sh` decrypts the key to `~/.config/chezmoi/key.txt` once per machine.
+
+- Edit a secret: `chezmoi edit ~/.ssh/config`. Or edit the file, then run `chezmoi re-add ~/.ssh/config`.
+- After `fss add`: `chezmoi re-add ~/.ssh/config ~/.config/fss/servers.conf`, then commit.
+- After you change the GPG key, for example a new expiry date: `gpg --export-secret-keys --armor 490CB7F4 | chezmoi encrypt > secrets/gpg-key.asc.age`, then commit. Other machines import it on the next `chezmoi apply`.
+- SSH private keys are not in the repo. Each machine has its own.
 
 ## Daily use
 
@@ -38,6 +74,7 @@ zen/                   Zen browser settings that the Mozilla account does not sy
 iterm2/                iTerm2 reads its preferences directly from this folder
 macos/.macos           macOS defaults. Run it manually: source macos/.macos
 scripts/               fzf helpers: fsb, fshow, fss (aliases in zshrc)
+secrets/               age-encrypted age key and GPG key (see Secrets)
 cp_templates/          Competitive programming template (used by nvim competitest)
 ```
 
@@ -63,6 +100,3 @@ The Mozilla account syncs only some `zen.*` prefs. This repo keeps the rest:
 
 Zen reads `user.js` at every start, so a layout change made in the Zen UI does not last after a restart. To keep a change, run `zen/capture.sh` and commit the result.
 
-## Not in this repo
-
-This repo is public, so it does not contain `~/.ssh/config` or `scripts/servers.conf` (git ignores it).

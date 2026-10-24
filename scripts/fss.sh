@@ -2,10 +2,10 @@
 
 # Fuzzy SSH server manager
 # Usage: fss [add|edit|list] [alias user@host description...]
-# Servers index: ~/dotfiles/scripts/servers.conf
+# Servers index: ~/.config/fss/servers.conf (chezmoi-managed, encrypted)
 # Connection config: ~/.ssh/config
 
-SERVERS_FILE="${HOME}/dotfiles/scripts/servers.conf"
+SERVERS_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/fss/servers.conf"
 SSH_CONFIG="${HOME}/.ssh/config"
 
 _fss_connect() {
@@ -87,9 +87,11 @@ _fss_add() {
     } >> "$SSH_CONFIG"
 
     # Append to servers.conf
+    mkdir -p "$(dirname "$SERVERS_FILE")"
     printf '%-20s %-30s %s\n' "$server_alias" "${user}@${host}" "$desc" >> "$SERVERS_FILE"
 
     echo "[fss] Added '${server_alias}' (${user}@${host})"
+    echo "[fss] To sync it: chezmoi re-add ~/.ssh/config $SERVERS_FILE, then commit"
 
     # Optional key copy
     read -rp "Copy SSH key to ${server_alias} now? (y/N) " yn

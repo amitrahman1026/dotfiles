@@ -2,3 +2,10 @@
 Library
 .ideavimrc
 {{ end }}
+{{ if ne .profile "personal" }}
+# Personal secrets and repos stay off work machines.
+.ssh/config
+.ssh/config.age
+.config/fss
+agent-workspace
+{{ end }}

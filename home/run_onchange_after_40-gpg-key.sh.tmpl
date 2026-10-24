@@ -1,0 +1,11 @@
+{{ if eq .profile "personal" -}}
+#!/bin/bash
+# Import the commit-signing key (secrets/gpg-key.asc.age) and trust it.
+# Re-running also refreshes the public part, such as a changed expiry date.
+set -euo pipefail
+gpg --batch --quiet --import <<'KEY'
+{{ include "../secrets/gpg-key.asc.age" | decrypt -}}
+KEY
+echo "F630C12F368D2EE4DC88AD264A44FFAF490CB7F4:6:" | gpg --batch --quiet --import-ownertrust
+echo "gpg: signing key 490CB7F4 imported"
+{{ end -}}
