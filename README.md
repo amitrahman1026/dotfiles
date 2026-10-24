@@ -1,24 +1,21 @@
 # dotfiles
 
-My shell, git, editor, terminal and browser settings for macOS and Arch Linux. [chezmoi](https://www.chezmoi.io) applies them from this repo. All machines use the `master` branch. Templates handle the differences between operating systems.
+My shell, git, editor, terminal and browser setup, for my Mac and my Arch sandbox (and maybe Windows one day). [chezmoi](https://www.chezmoi.io) applies it all. Everything lives on `master`; when the Mac and Linux need different things, templates handle it instead of a branch per machine.
 
-## Set up a new machine
+## New machine
 
 ```bash
 git clone https://github.com/amitrahman1026/dotfiles.git ~/dotfiles
 ~/dotfiles/install.sh
 ```
 
-`install.sh` needs no admin rights. It installs chezmoi (with Homebrew if present, else into `~/.local/bin`), asks two questions, shows the diff, and applies the changes when you confirm:
+No admin rights needed. `install.sh` gets chezmoi (through Homebrew if it's there, otherwise into `~/.local/bin`), asks whether this is a `personal` or `work` machine and which git email to use, shows the diff, and applies once I say yes.
 
-- **Machine profile:** `personal` or `work`.
-- **Git email.**
+On a personal machine it also asks for the age key passphrase. That's in Bitwarden as `chezmoi age key passphrase`.
 
-On a `personal` machine it then asks for the age key passphrase. Copy it from the Bitwarden item `chezmoi age key passphrase`.
+The answers end up in `~/.config/chezmoi/chezmoi.toml`. Run `chezmoi init --source ~/dotfiles` again to change them.
 
-The answers are saved in `~/.config/chezmoi/chezmoi.toml`. To change them, run `chezmoi init --source ~/dotfiles` again.
-
-## Profiles
+## Personal vs work
 
 | | personal | work |
 |---|---|---|
@@ -28,75 +25,74 @@ The answers are saved in `~/.config/chezmoi/chezmoi.toml`. To change them, run `
 | nvim config clone | over ssh | over https |
 | Shell, editors, tmux, Zen | yes | yes |
 
-On a work machine without admin rights, nvim 0.12 and tree-sitter-cli 0.26+ may need a user-level install, such as the release tarballs in `~/.local`.
+On a work machine where I'm not admin, nvim 0.12 and tree-sitter-cli 0.26+ probably need a user-level install, e.g. the release tarballs in `~/.local`.
 
 ## Secrets
 
-chezmoi encrypts these files with age. The repo is public, so it holds only ciphertext:
+This repo is public, so anything sensitive is age-encrypted and only the ciphertext is committed:
 
 | File | Source |
 |---|---|
 | `~/.ssh/config` | `home/private_dot_ssh/encrypted_config.age` |
 | `~/.config/fss/servers.conf` | `home/private_dot_config/fss/encrypted_servers.conf.age` |
-| GPG signing key 490CB7F4 | `secrets/gpg-key.asc.age`. `run_onchange_after_40-gpg-key.sh` imports and trusts it. |
+| GPG signing key 490CB7F4 | `secrets/gpg-key.asc.age` (`run_onchange_after_40-gpg-key.sh` imports and trusts it) |
 
-The age key itself is in `secrets/age-key.txt.age`, encrypted with a passphrase. The passphrase is in Bitwarden. `run_onchange_before_00-age-key.sh` decrypts the key to `~/.config/chezmoi/key.txt` once per machine.
+The age key is in `secrets/age-key.txt.age`, locked with the passphrase from Bitwarden. `run_onchange_before_00-age-key.sh` decrypts it to `~/.config/chezmoi/key.txt` the first time on each machine, and after that I never need Bitwarden for this.
 
-- Edit a secret: `chezmoi edit ~/.ssh/config`. Or edit the file, then run `chezmoi re-add ~/.ssh/config`.
+- To edit a secret: `chezmoi edit ~/.ssh/config`, or edit the file directly and `chezmoi re-add ~/.ssh/config`.
 - After `fss add`: `chezmoi re-add ~/.ssh/config ~/.config/fss/servers.conf`, then commit.
-- After you change the GPG key, for example a new expiry date: `gpg --export-secret-keys --armor 490CB7F4 | chezmoi encrypt > secrets/gpg-key.asc.age`, then commit. Other machines import it on the next `chezmoi apply`.
-- SSH private keys are not in the repo. Each machine has its own.
+- If the GPG key changes (new expiry, say): `gpg --export-secret-keys --armor 490CB7F4 | chezmoi encrypt > secrets/gpg-key.asc.age`, commit, and the other machines pick it up on their next `chezmoi apply`.
+- SSH private keys aren't in here. Every machine gets its own.
 
-## Daily use
+## Day to day
 
 | Task | Command |
 |---|---|
-| See what chezmoi will change | `chezmoi diff` |
-| Apply this repo to the machine | `chezmoi apply` |
-| Pull this repo and the external repos, then apply | `chezmoi update` |
-| Copy a file that you changed in place back into the repo | `chezmoi re-add ~/.zshrc` |
-| Edit a template | Edit the file under `home/`, then run `chezmoi apply` |
+| See what chezmoi would change | `chezmoi diff` |
+| Apply the repo | `chezmoi apply` |
+| Pull this repo and the externals, then apply | `chezmoi update` |
+| Save a file I edited in place back to the repo | `chezmoi re-add ~/.zshrc` |
+| Edit a template | Edit it under `home/`, then `chezmoi apply` |
 
-chezmoi writes copies, not symlinks. If an app changes its own config file, `chezmoi diff` shows the change. Run `chezmoi re-add` to keep it, or `chezmoi apply` to discard it.
+chezmoi writes real files, not symlinks. When an app rewrites its own config, `chezmoi diff` shows it, and I either `chezmoi re-add` to keep the change or `chezmoi apply` to throw it away.
 
-## Layout
+## What's where
 
 ```
 home/                  chezmoi source state (.chezmoiroot). Paths are relative to ~.
-  dot_zshrc.tmpl       zsh config. Sections for darwin and linux.
-  dot_p10k.zsh.tmpl    Powerlevel10k. The font mode depends on the OS.
-  dot_gitconfig, dot_config/git/ignore, dot_vimrc, dot_tmux.conf, dot_ideavimrc
-  Library/...          VS Code and Cursor settings (macOS only)
-  .chezmoiexternal.toml  Git repos that chezmoi clones and pulls (see below)
-  run_onchange_*       Scripts that run when their inputs change
-brew/Brewfile          Homebrew packages. The brew script runs when this file changes.
-zen/                   Zen browser settings that the Mozilla account does not sync
-iterm2/                iTerm2 reads its preferences directly from this folder
-macos/.macos           macOS defaults. Run it manually: source macos/.macos
-scripts/               fzf helpers: fsb, fshow, fss (aliases in zshrc)
-secrets/               age-encrypted age key and GPG key (see Secrets)
-cp_templates/          Competitive programming template (used by nvim competitest)
+  dot_zshrc.tmpl       zsh config, with darwin and linux sections
+  dot_p10k.zsh.tmpl    Powerlevel10k; font mode depends on the OS
+  dot_gitconfig.tmpl, private_dot_config/git/ignore, dot_vimrc, dot_tmux.conf, dot_ideavimrc
+  private_Library/...  VS Code and Cursor settings (macOS only)
+  .chezmoiexternal.toml.tmpl  git repos chezmoi clones and pulls (see below)
+  run_onchange_*       scripts that rerun when their inputs change
+brew/Brewfile          Homebrew packages; the brew script reruns when this changes
+zen/                   Zen settings the Mozilla account doesn't sync
+iterm2/                iTerm2 reads its prefs straight from this folder
+macos/.macos           macOS defaults, run by hand: source macos/.macos
+scripts/               fzf helpers fsb, fshow, fss (aliased in zshrc)
+secrets/               age-encrypted age key and GPG key
+cp_templates/          competitive programming template (nvim competitest uses it)
 ```
 
 ## External repos
 
-`.chezmoiexternal.toml` clones these repos and pulls them weekly on `chezmoi update`. Edit them and commit in place. They are normal git repos.
+chezmoi clones these and pulls them weekly on `chezmoi update`. They're normal git repos, so I edit and commit in place. Pulls are fast-forward only, so push local commits before running `chezmoi update`.
 
 | Path | Repo |
 |---|---|
-| `~/.config/nvim` | `amitrahman1026/init.lua`. Use one `main` branch. Put machine differences in Lua checks, not in branches. |
-| `~/agent-workspace` | `amitrahman1026/agent-workspace` (private). Claude Code rules, skills and settings. `run_onchange_after_30-agent-workspace.sh` runs its `install.sh`, which links them into `~/.claude`. |
-| `~/.oh-my-zsh` and its powerlevel10k and zsh-autosuggestions | upstream |
+| `~/.config/nvim` | `amitrahman1026/init.lua`. One `main` branch for every machine; differences go in Lua checks, not branches. |
+| `~/agent-workspace` | `amitrahman1026/agent-workspace` (private): Claude Code rules, skills and settings. `run_onchange_after_30-agent-workspace.sh` runs its `install.sh`, which links them into `~/.claude`. |
+| `~/.oh-my-zsh`, plus its powerlevel10k and zsh-autosuggestions | upstream |
 | `~/.tmux/plugins/tpm` | upstream |
 
-## Zen browser
+## Zen
 
-The Mozilla account syncs only some `zen.*` prefs. This repo keeps the rest:
+The Mozilla account only syncs some of Zen's `zen.*` prefs, so the rest live here:
 
-- `zen/user.js`: the layout prefs (`zen.view.*`, `browser.uiCustomization.state`) and `xpinstall.signatures.required=false` for unsigned add-ons.
+- `zen/user.js`: layout prefs (`zen.view.*`, `browser.uiCustomization.state`), plus `xpinstall.signatures.required=false` so unsigned add-ons install.
 - `zen/zen-keyboard-shortcuts.json`: keyboard shortcuts.
 
-`run_onchange_after_20-zen.sh` copies both files into each Zen profile listed in `profiles.ini`. Quit Zen before `chezmoi apply`, or Zen rewrites the shortcuts file when it exits.
+`run_onchange_after_20-zen.sh` copies both into every Zen profile in `profiles.ini`. Quit Zen before `chezmoi apply`, or it overwrites the shortcuts file on exit.
 
-Zen reads `user.js` at every start, so a layout change made in the Zen UI does not last after a restart. To keep a change, run `zen/capture.sh` and commit the result.
-
+Zen re-reads `user.js` on every start, so layout tweaks made in the UI get reset on restart. To keep one, run `zen/capture.sh` and commit.
