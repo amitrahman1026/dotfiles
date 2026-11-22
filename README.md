@@ -62,7 +62,7 @@ chezmoi writes real files, not symlinks. When an app rewrites its own config, `c
 home/                  chezmoi source state (.chezmoiroot). Paths are relative to ~.
   dot_zshrc.tmpl       zsh config, with darwin and linux sections
   dot_p10k.zsh.tmpl    Powerlevel10k; font mode depends on the OS
-  dot_gitconfig.tmpl, private_dot_config/git/ignore, dot_vimrc, dot_tmux.conf, dot_ideavimrc
+  dot_gitconfig.tmpl, private_dot_config/git/ignore, dot_vimrc, dot_tmux.conf, dot_ideavimrc, dot_clang-tidy
   private_Library/...  VS Code and Cursor settings (macOS only)
   .chezmoiexternal.toml.tmpl  git repos chezmoi clones and pulls (see below)
   run_onchange_*       scripts that rerun when their inputs change
