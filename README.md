@@ -85,6 +85,7 @@ chezmoi clones these and pulls them weekly on `chezmoi update`. They're normal g
 | `~/agent-workspace` | `amitrahman1026/agent-workspace` (private): Claude Code rules, skills and settings. `run_onchange_after_30-agent-workspace.sh` runs its `install.sh`, which links them into `~/.claude`. |
 | `~/.oh-my-zsh`, plus its powerlevel10k and zsh-autosuggestions | upstream |
 | `~/.tmux/plugins/tpm` | upstream |
+| `~/.local/share/clice` | clice release tarball for Linux and macOS, no admin needed. The version is pinned in `.chezmoiexternal.toml.tmpl`, so bump it there to upgrade. `~/.local/bin/clice` links to its binary. |
 
 ## Zen
 

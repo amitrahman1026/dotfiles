@@ -44,3 +44,21 @@
     url = "https://github.com/tmux-plugins/tpm.git"
     refreshPeriod = "168h"
     pull.args = ["--ff-only"]
+
+{{- /* clice C++ language server, a release tarball in ~/.local so work machines need no admin rights.
+       To upgrade, change the version. ~/.local/bin/clice links to its binary. */}}
+{{- $cliceVersion := "1.0.0" }}
+{{- $cliceTriples := dict
+      "linux/amd64" "x86_64-unknown-linux-gnu"
+      "linux/arm64" "aarch64-unknown-linux-gnu"
+      "darwin/amd64" "x86_64-apple-darwin"
+      "darwin/arm64" "aarch64-apple-darwin" }}
+{{- $cliceTriple := get $cliceTriples (printf "%s/%s" .chezmoi.os .chezmoi.arch) }}
+{{- if $cliceTriple }}
+
+[".local/share/clice"]
+    type = "archive"
+    url = "https://github.com/clice-io/clice/releases/download/v{{ $cliceVersion }}/clice-{{ $cliceVersion }}.{{ $cliceTriple }}.tar.gz"
+    exact = true
+    stripComponents = 1
+{{- end }}
